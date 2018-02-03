@@ -587,7 +587,8 @@ module ActiveRecord
           binds:             binds,
           type_casted_binds: type_casted_binds,
           statement_name:    statement_name,
-          connection_id:     object_id) { yield }
+          connection_id:     object_id,
+          mysql_id:          mysql_id) { yield }
       rescue => e
         raise translate_exception_class(e, sql)
       end

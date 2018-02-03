@@ -37,6 +37,8 @@ module ActiveRecord
     class Mysql2Adapter < AbstractMysqlAdapter
       ADAPTER_NAME = 'Mysql2'.freeze
 
+      attr_reader :mysql_id
+
       include MySQL::DatabaseStatements
 
       def initialize(connection, logger, connection_options, config)
@@ -116,6 +118,7 @@ module ActiveRecord
 
       def configure_connection
         @connection.query_options.merge!(:as => :array)
+        @mysql_id = @connection.query("SELECT connection_id()").to_a.flatten.first
         super
       end
 

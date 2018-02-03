@@ -42,7 +42,7 @@ module ActiveRecord
       name = colorize_payload_name(name, payload[:name])
       sql  = color(sql, sql_color(sql), true)
 
-      debug "  #{name}  #{sql}#{binds}"
+      debug "  [MySQL Connection:#{payload[:mysql_id]}] #{name}  #{sql}#{binds}"
     end
 
     private
